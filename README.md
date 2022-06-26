@@ -65,11 +65,14 @@ Untuk analisa yang lebih detail ada pada dashboard halaman kedua, dimana penggun
 
 
 ## **Dashboard**
-
+Mapping per kabupaten menggunakan parameter indeks kesehatan, jumlah ibu hamil, persentase penduduk yang mempunyai keluhan sakit dan bayi bergizi kurang
 ![alt text](images/dashboard%20overview.PNG)
 
+
+Analitik tiap kabupaten berdasarkan data tahun 2021(terbaru) dan perbadingan kasus kekerasan berdasarkan tahun 2018 dan 2021
 ![alt text](images/dashboard%20analitik.PNG)
 
+[JABAR SEHAT by Bali Team](https://public.tableau.com/app/profile/zakiahafifah/viz/JABARSEHATbyBaliTeam/Overview2)
 
 ## **Analysis**
 Dalam penggunaan dashboard ini, pengguna bisa melihat overview atau gambaran besar dari data yang sudah diolah pada halaman depan. Pengguna dapat melihat jumlah kasus per kategori dan atau pertahun sesuai dengan filter yang dipilih.
