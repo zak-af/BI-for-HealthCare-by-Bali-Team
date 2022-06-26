@@ -41,12 +41,15 @@ df = data1.merge(data2, on=('kode_kabupaten_kota', 'nama_provinsi', 'nama_kabupa
 df = df.merge(data3, on=('kode_kabupaten_kota', 'nama_provinsi', 'nama_kabupaten_kota', 'tahun'), how='outer')
 df = df.merge(data4, on=('kode_kabupaten_kota', 'nama_provinsi', 'nama_kabupaten_kota', 'tahun'), how='outer')
 ```
-2. Mengelompokkan jumlah kekerasan berdasarkan kategori pendidikan
+
+2. Grouping jumlah kasus per kabupaten
 
 ```
 count_pendidikan = df3_.groupby(['kategori_pendidikan'])[['jml_kelompok_pendidikan']].sum()
 count_pendidikan 
 ```
+![](images/grouping%20jumlah%20kasus.png)
+
 3. Scoring untuk jumlah kasus yang ada:
 
 ```
@@ -54,7 +57,7 @@ score['mean'] = score.mean(axis=1)
 score['total'] = score['jml_ims'] + score['jml_balita'] + score['jml_kdrt'] + score['jml_kelompok_pendidikan'] + score['jml_kelompok_usia']
 score['ranking'] = score['mean'].rank(method='min')
 ```
-
+![](images/ranking.png)
 
 ## **Exploratory Data Analysis (EDA)**
 Dalam penggunaan dashboard ini, pengguna bisa melihat overview atau gambaran besar dari data yang sudah diolah pada halaman depan. Pengguna dapat melihat jumlah kasus per kategori dan atau pertahun sesuai dengan filter yang dipilih.
@@ -63,9 +66,10 @@ Untuk analisa yang lebih detail ada pada dashboard halaman kedua, dimana penggun
 
 ## **Dashboard**
 
+![alt text](images/dashboard%20overview.PNG)
 
-![alt text](http://url/to/img.png)
-![alt text](https://drive.google.com/file/d/1WiGtdxwx_Ji4MsCAK4Ef_HcmYgYtRhjX/view?usp=sharing/IMG0132.png)
+![alt text](images/dashboard%20analitik.PNG)
+
 
 ## **Analysis**
 Dalam penggunaan dashboard ini, pengguna bisa melihat overview atau gambaran besar dari data yang sudah diolah pada halaman depan. Pengguna dapat melihat jumlah kasus per kategori dan atau pertahun sesuai dengan filter yang dipilih.
