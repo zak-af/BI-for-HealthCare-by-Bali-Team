@@ -5,9 +5,7 @@
 ## **Backgrounds**
 Data kesehatan dapat menjadi referensi dalam pengambilan keputusan untuk membuat kebijakan atau program kesehatan. Namun, terkadang data yang terlalu banyak ada yang tidak lengkap dan tersebar sehingga tidak mudah dibaca langsung, serta menyulitkan dalam memetakan prioritas masalah kesehatan yang ada dan tepat sasaran.
 
- Dari masalah yang ada tersebut, maka dashboard yang kami buat diharapkan dapat membantu memberi insight dalam memetakan prioritas masalah kesehatan di suatu daerah agar bisa mengambil kebijakan atau membuat program kesehatan yang tepat sasaran.
-
-![](https://asset-a.grid.id//crop/0x0:0x0/700x465/photo/2019/10/31/71888328.jpg)
+Dari masalah yang ada tersebut, maka dashboard yang kami buat diharapkan dapat membantu memberi insight dalam memetakan prioritas masalah kesehatan di suatu daerah agar bisa mengambil kebijakan atau membuat program kesehatan yang tepat sasaran.
 
 
 ## **Objectives**
@@ -23,48 +21,39 @@ Dengan melihat dashboard yang telah kami buat kami harap personas/users kami bis
 6. Membuat dashboard menggunakan Tableau.
 
 
-
 ## **Wrangling Data**
-- Ceritakan langkah-langkah Anda dalam melakukan wrangling data.
-- Scoring untuk jumlah kasus yang ada:
-	score['mean'] = score.mean(axis=1)
-	score['total'] = score['jml_ims'] + score['jml_balita'] + score['jml_kdrt'] + score['jml_kelompok_pendidikan'] + score['jml_kelompok_usia']
-	score['ranking'] = score['mean'].rank(method='min')
-	
-	
-'''
-```python
-def fungsi_penting(input1, input2):
-    """
-    Fungsi penting ini menghitung sesuatu yang penting
-
-    Input:
-        input1   : berisi ini
-        input2   : berisi itu
-    
-    Return:
-        output   : output yang didapat
-    """
-    output = input1 + input2
-
-    return output
+1. Marge data untuk fitur mapping kasus per kabupaten
 ```
-'' 
-def fungsi_penting(input1, input2):
-    """
-    Fungsi penting ini menghitung sesuatu yang penting
+#copy data
+data1 = indeks_.copy()
+data2 = keluhan_.copy()
+data3 = ibu_.copy()
+data4 = bayi_.copy()
 
-    Input:
-        input1   : berisi ini
-        input2   : berisi itu
-    
-    Return:
-        output   : output yang didapat
-    """
-    output = input1 + input2
+#drop column
+data1 = data1.drop(['id','kode_provinsi', 'satuan'], axis=1)
+data2 =data2.drop(['id', 'kode_provinsi', 'satuan'], axis=1)
+data3 =data3.drop(['id', 'kode_provinsi', 'satuan'], axis=1)
+data4 =data4.drop(['id', 'kode_provinsi', 'satuan'], axis=1)
 
-    return output
-- Anda dapat memberikan screenshot hasil akhir data setelah di Wrangling.
+#merge
+df = data1.merge(data2, on=('kode_kabupaten_kota', 'nama_provinsi', 'nama_kabupaten_kota', 'tahun'), how='outer')
+df = df.merge(data3, on=('kode_kabupaten_kota', 'nama_provinsi', 'nama_kabupaten_kota', 'tahun'), how='outer')
+df = df.merge(data4, on=('kode_kabupaten_kota', 'nama_provinsi', 'nama_kabupaten_kota', 'tahun'), how='outer')
+```
+2. Mengelompokkan jumlah kekerasan berdasarkan kategori pendidikan
+
+```
+count_pendidikan = df3_.groupby(['kategori_pendidikan'])[['jml_kelompok_pendidikan']].sum()
+count_pendidikan 
+```
+3. Scoring untuk jumlah kasus yang ada:
+
+```
+score['mean'] = score.mean(axis=1)
+score['total'] = score['jml_ims'] + score['jml_balita'] + score['jml_kdrt'] + score['jml_kelompok_pendidikan'] + score['jml_kelompok_usia']
+score['ranking'] = score['mean'].rank(method='min')
+```
 
 
 ## **Exploratory Data Analysis (EDA)**
@@ -73,14 +62,7 @@ Untuk analisa yang lebih detail ada pada dashboard halaman kedua, dimana penggun
 
 
 ## **Dashboard**
-- Rangkumlah hasil EDA yang Anda lakukan dalam bentuk *dashboard*.
-- Anda dapat membuat *dashboard* menggunakan Tableau agar:
-   - Visualisasi lebih interaktif
-   - Memudahkan Anda dalam membantu mempresentasikan hasil.
-- Sertakan beberapa *screenshot* dari *dashboard*
-- Sertakan link menuju *dashboard* Anda.
-- Contoh dashboard: [Link Dashboard](https://public.tableau.com/app/profile/khulud.saekhan/viz/DashboardProjectLab/DashboardKepemilikanRumah)
-![](https://drive.google.com/file/d/1WiGtdxwx_Ji4MsCAK4Ef_HcmYgYtRhjX/view?usp=sharing)
+
 
 ![alt text](http://url/to/img.png)
 ![alt text](https://drive.google.com/file/d/1WiGtdxwx_Ji4MsCAK4Ef_HcmYgYtRhjX/view?usp=sharing/IMG0132.png)
